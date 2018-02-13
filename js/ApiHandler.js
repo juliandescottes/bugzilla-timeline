@@ -17,8 +17,9 @@ let ApiHandler = {
     ];
     let params = {
       "include_fields": fields.join(","),
-      "email1": email,
-      "emailassigned_to1": 1
+      "f1": "blocked",
+      "o1": "substring",
+      "v1": 1412334
     };
     let searchParams;
     if (window.URLSearchParams) {

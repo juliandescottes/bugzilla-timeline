@@ -434,7 +434,7 @@ function fetchBugsHistoryForYear(year) {
           });
 
           // If the bug has no startDate, we assume it is the creation date
-          if (!bug.startDate && bug.assigned_to === bugzillaEmail) {
+          if (!bug.startDate) {
             bug.startDate = new Date(bug.creation_time);
           }
 

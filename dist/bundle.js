@@ -53,9 +53,9 @@
 	  MONTHS,
 	  COLORS,
 	  PRIORITY_REGEX
-	} = __webpack_require__(3);
-	const {ApiHandler} = __webpack_require__(4);
-	const {needWhiteText, getMondayOfFirstWeek, findLane, createSVGElement} = __webpack_require__(5);
+	} = __webpack_require__(1);
+	const {ApiHandler} = __webpack_require__(2);
+	const {needWhiteText, getMondayOfFirstWeek, findLane, createSVGElement} = __webpack_require__(3);
 	
 	function init() {
 	  addListeners();
@@ -480,7 +480,7 @@
 	          });
 	
 	          // If the bug has no startDate, we assume it is the creation date
-	          if (!bug.startDate && bug.assigned_to === bugzillaEmail) {
+	          if (!bug.startDate) {
 	            bug.startDate = new Date(bug.creation_time);
 	          }
 	
@@ -1220,9 +1220,7 @@
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */
+/* 1 */
 /***/ function(module, exports) {
 
 	const constants = {
@@ -1272,7 +1270,7 @@
 
 
 /***/ },
-/* 4 */
+/* 2 */
 /***/ function(module, exports) {
 
 	const BUGZILLA_API_URL = "https://bugzilla.mozilla.org/rest/";
@@ -1294,8 +1292,9 @@
 	    ];
 	    let params = {
 	      "include_fields": fields.join(","),
-	      "email1": email,
-	      "emailassigned_to1": 1
+	      "f1": "blocked",
+	      "o1": "substring",
+	      "v1": 1412334
 	    };
 	    let searchParams;
 	    if (window.URLSearchParams) {
@@ -1354,10 +1353,10 @@
 
 
 /***/ },
-/* 5 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const {MONDAY_INDEX, MILLISECOND_A_DAY} = __webpack_require__(3);
+	const {MONDAY_INDEX, MILLISECOND_A_DAY} = __webpack_require__(1);
 	
 	function needWhiteText(rgb) {
 	  let values = rgb.replace("rgb(", "").replace(")", "").replace(" ", "").split(",");
